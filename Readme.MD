@@ -1,22 +1,29 @@
-# CV Parsing SaaS
+# Routing Architecture
 
-## Overview
+This project uses a single domain with a clear separation between frontend and backend routes, managed by an NGINX reverse proxy:
 
-**CV Parsing SaaS** is a two-part project:
+- All requests to `/api/` are routed to the backend (**resume-parser**), with the `/api/` prefix stripped before forwarding. For example, a request to `/api/upload` is proxied to the backend’s `/upload` endpoint.
+- All other requests (such as `/`, `/about`, `/docs`, or any static assets) are routed to the frontend (**seller-website**), which serves static HTML templates and assets.
 
-- **resume-parser**: A Python Flask backend that provides a REST API for parsing resumes/CVs. It supports file uploads, extracts structured data (JSON), and offers integration-ready endpoints for use in your own applications or ATS.
-- **seller-website**: A modern, responsive landing page and documentation site built with Flask and Jinja2 templates. It showcases the service, provides API documentation, and offers integration guides for frameworks like Angular, React, Vue.js, and Next.js.
+## How it works
 
-> **Note:** Up to this point, I used AI tools to iterate quickly and efficiently on the initial landing page and project structure. This allowed for rapid prototyping and refinement of the user experience and documentation.
+### Frontend (Landing Page & Docs)
 
----
+- Accessed via `/` and all non-API routes.
+- Serves static content and documentation using Flask and Jinja2 templates.
 
-## Features
+### Backend (API Endpoints)
 
-- **Resume Parsing API**: Upload a resume and receive structured data in JSON format.
-- **Component Integrations**: Easily embed components in Angular, React, Vue.js, or Next.js apps to auto-fill forms with parsed CV data.
-- **Custom Components**: Subscribe to custom components for rapid form building and data extraction.
-- **Monitoring & Insights**: Get analytics on candidate data, including common tech stacks and abilities.
-- **Modern Landing Page**: Clean, developer-focused website with documentation and integration guides.
+- Accessed via `/api/` routes (e.g., `/api/upload`).
+- Handles file uploads, resume parsing, and returns structured JSON data.
 
----
+## Example Requests
+
+| URL            | Routed To       | Description                            |
+|----------------|-----------------|----------------------------------------|
+| `/`            | seller-website  | Landing page                           |
+| `/about`       | seller-website  | About page or other static content     |
+| `/api/upload`  | resume-parser   | Resume parsing API endpoint            |
+| `/api/status`  | resume-parser   | API status/health endpoint             |
+
+This architecture keeps your API and frontend cleanly separated, easy to maintain, and simple to consume for both users and developers.
