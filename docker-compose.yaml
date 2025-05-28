@@ -1,0 +1,41 @@
+services:
+  mongo:
+    image: mongo:7.0-jammy
+    container_name: mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  resume-parser:
+    build: ./resume-parser
+    container_name: resume-parser
+    depends_on:
+      - mongo
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/
+    expose:
+      - "5000"
+    restart: always
+
+  seller-website:
+    build: ./seller-website
+    container_name: seller-website
+    expose:
+      - "5000"
+    restart: always
+
+  nginx:
+    image: nginx:alpine
+    container_name: nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - resume-parser
+      - seller-website
+
+volumes:
+  mongo_data:

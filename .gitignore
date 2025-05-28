@@ -1,0 +1,23 @@
+# Ignore all virtual environments named 'venv'
+venv/
+*/venv/
+**/venv/
+
+# Ignore Python cache files and folders
+__pycache__/
+*/__pycache__/
+**/__pycache__/
+*.py[cod]
+*$py.class
+
+# Ignore test/build artifacts
+*.egg-info/
+dist/
+build/
+
+# Ignore editor/OS files
+.DS_Store
+*.swp
+*.swo
+.idea/
+.vscode/
