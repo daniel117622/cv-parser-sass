@@ -25,6 +25,8 @@ services:
     expose:
       - "5000"
     restart: always
+    env_file:
+      - .env
 
   nginx:
     image: nginx:alpine

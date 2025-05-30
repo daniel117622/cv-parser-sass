@@ -1,5 +1,8 @@
 import os
 from flask import Flask, render_template, redirect, url_for, session
+import logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 try:
     from authlib.integrations.flask_client import OAuth # type: ignore
@@ -78,6 +81,15 @@ def logout():
     return redirect(
         f'https://{AUTH0_DOMAIN}/v2/logout?returnTo={url_for("index", _external=True)}'
     )
+
+logger.info("--- Loaded Environment Variables ---")
+logger.info(f"FLASK_SECRET_KEY: {os.environ.get('FLASK_SECRET_KEY')}")
+logger.info(f"AUTH0_CLIENT_ID: {AUTH0_CLIENT_ID}")
+logger.info(f"AUTH0_CLIENT_SECRET: {AUTH0_CLIENT_SECRET}")  # Consider masking in production!
+logger.info(f"AUTH0_DOMAIN: {AUTH0_DOMAIN}")
+logger.info(f"AUTH0_CALLBACK_URL: {AUTH0_CALLBACK_URL}")
+logger.info(f"Authlib Installed: {'YES' if OAuth else 'NO'}")
+logger.info(f"Auth0 Setup: {'ENABLED' if AUTH0_AVAILABLE else 'DISABLED'}")
 
 if __name__ == "__main__":
     app.run(debug=True)
