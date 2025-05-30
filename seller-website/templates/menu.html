@@ -1,0 +1,27 @@
+<!-- menu.html -->
+<div id="header-wrapper">
+    <header id="header" class="container">
+        <!-- Logo -->
+        <div id="logo">
+            <h1><a href="{{ url_for('index') }}">Verti</a></h1>
+            <span>by _Kuhaku_</span>
+        </div>
+        <!-- Nav -->
+        <nav id="nav">
+            <ul>
+                <li class="current"><a href="{{ url_for('index') }}">Products</a></li>
+                <li><a href="#">Resources</a></li>
+                <li><a href="#">Community</a></li>
+                <li>
+                    <a href="https://github.com/daniel117622/cv-parser-sass">Repo</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('auth') }}" class="special">Login</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('auth') }}" class="special">Register</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+</div>

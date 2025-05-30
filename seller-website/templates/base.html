@@ -1,260 +1,55 @@
-<!DOCTYPE HTML>
-<!--
-	Verti by 
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
+<!-- base.html -->
+<!DOCTYPE html>
 <html>
-	<head>
-		<title>Verti by </title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-	</head>
-	<body class="is-preload homepage">
-		<div id="page-wrapper">
+<head>
+    <title>{% block title %}Verti{% endblock %}</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/main.css') }}" />
+</head>
+<body class="is-preload homepage">
+    <div id="page-wrapper">
+        {% include 'menu.html' %}
 
-            <!-- Header -->
-            <div id="header-wrapper">
-                <header id="header" class="container">
-
-                    <!-- Logo -->
-                    <div id="logo">
-                        <h1><a href="index.html">Verti</a></h1>
-                        <span>by _Kuhaku_</span>
+        <!-- Banner -->
+        <div id="banner-wrapper">
+            <div id="banner" class="box container">
+                <div class="row">
+                    <div class="col-7 col-12-medium">
+                        <h2>CV Parsing as a Service</h2>
+                        <p>Parse resumes via API or auto-fill forms with our Angular components.</p>
                     </div>
-
-                    <!-- Nav -->
-                    <nav id="nav">
+                    <div class="col-5 col-12-medium">
                         <ul>
-                            <li class="current"><a href="index.html">Products</a></li>
-                            <li><a href="#">Resources</a></li>
-                            <li><a href="#">Community</a></li>
-                            <li><a href="#">Repo</a></li>
-                            <li><a href="#" class="special">Login</a></li>
-                            <li><a href="#" class="special">Register</a></li>
+                            <li>
+                                <a href="#features-wrapper" class="button large icon solid fa-arrow-circle-right">
+                                    Get Started
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/docs" class="button alt large icon solid fa-question-circle">
+                                    Docs
+                                </a>
+                            </li>
                         </ul>
-                    </nav>
-
-                </header>
-            </div>
-
-
-			<!-- Banner -->
-            <div id="banner-wrapper">
-                <div id="banner" class="box container">
-                    <div class="row">
-                        <div class="col-7 col-12-medium">
-                            <h2>CV Parsing as a Service</h2>
-                            <p>Parse resumes via API or auto-fill forms with our Angular components.</p>
-                        </div>
-                        <div class="col-5 col-12-medium">
-                            <ul>
-                                <li><a href="#features-wrapper" class="button large icon solid fa-arrow-circle-right">Get Started</a></li>
-                                <li><a href="#footer" class="button alt large icon solid fa-question-circle">Docs</a></li>
-                            </ul>
-                        </div>
                     </div>
                 </div>
             </div>
+        </div>
+
+        <!-- Features -->
+        {% include 'features.html' %}
 
 
 
-
-			<!-- Features -->
-            <div id="features-wrapper">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-4 col-12-medium">
-
-                            <!-- Box 1: Data Extraction -->
-                            <section class="box feature">
-                                <a href="#" class="image featured"><img src="images/pic01.jpg" alt="Data Extraction" /></a>
-                                <div class="inner">
-                                    <header>
-                                        <h2>Data Extraction API</h2>
-                                        <p>Fast, reliable, and scalable</p>
-                                    </header>
-                                    <p>
-                                        Hit our endpoint and instantly get structured data from any resume as JSON. 
-                                        Upload files up to <strong>10MB</strong> in size—no matter the format.
-                                    </p>
-                                </div>
-                            </section>
-
-                        </div>
-                        <div class="col-4 col-12-medium">
-
-                            <!-- Box 2: Custom Components -->
-                            <section class="box feature">
-                                <a href="#" class="image featured"><img src="images/pic02.jpg" alt="Custom Components" /></a>
-                                <div class="inner">
-                                    <header>
-                                        <h2>Custom Components</h2>
-                                        <p>Build forms, get results—no coding required</p>
-                                    </header>
-                                    <p>
-                                        Subscribe to custom components to quickly build forms and retrieve the data you need from CVs—efficiently and without reinventing the wheel.
-                                    </p>
-                                </div>
-                            </section>
-
-                        </div>
-                        <div class="col-4 col-12-medium">
-
-                            <!-- Box 3: Monitoring & Insights -->
-                            <section class="box feature">
-                                <a href="#" class="image featured"><img src="images/pic03.jpg" alt="Monitoring & Insights" /></a>
-                                <div class="inner">
-                                    <header>
-                                        <h2>Monitoring & Insights</h2>
-                                        <p>Understand your candidates</p>
-                                    </header>
-                                    <p>
-                                        Get detailed analytics about your candidates, including common tech stacks and abilities. 
-                                        Monitor usage and gain actionable insights to improve your hiring process.
-                                    </p>
-                                </div>
-                            </section>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-			<!-- Main -->
-				<div id="main-wrapper">
-					<div class="container">
-						<div class="row gtr-200">
-							<div class="col-4 col-12-medium">
-
-								<!-- Sidebar -->
-									<div id="sidebar">
-										<section class="widget thumbnails">
-											<h3>Interesting stuff</h3>
-											<div class="grid">
-												<div class="row gtr-50">
-													<div class="col-6"><a href="#" class="image fit"><img src="images/pic04.jpg" alt="" /></a></div>
-													<div class="col-6"><a href="#" class="image fit"><img src="images/pic05.jpg" alt="" /></a></div>
-													<div class="col-6"><a href="#" class="image fit"><img src="images/pic06.jpg" alt="" /></a></div>
-													<div class="col-6"><a href="#" class="image fit"><img src="images/pic07.jpg" alt="" /></a></div>
-												</div>
-											</div>
-											<a href="#" class="button icon fa-file-alt">More</a>
-										</section>
-									</div>
-
-							</div>
-							<div class="col-8 col-12-medium imp-medium">
-
-                                <!-- Content -->
-                                <div id="content">
-                                    <section class="last">
-                                        <h2>Make Hiring Effortless for Everyone</h2>
-                                        <p>
-                                            Our <strong>Resume Parsing SaaS</strong> is designed to simplify and accelerate the application process for both candidates and your Applicant Tracking System (ATS).
-                                            Instantly extract structured data from resumes, automate tedious tasks, and provide a seamless experience for applicants and recruiters alike.
-                                        </p>
-                                        <p>
-                                            Whether you're building a modern job board, enhancing your ATS, or just want to make hiring smarter, our platform delivers fast, accurate results—so you can focus on what matters most: finding the right talent.
-                                        </p>
-                                        <a href="#" class="button icon solid fa-arrow-circle-right">Get Started</a>
-                                    </section>
-                                </div>
-
-
-							</div>
-						</div>
-					</div>
-				</div>
-
-			<!-- Footer -->
-            <div id="footer-wrapper">
-                <footer id="footer" class="container">
-                    <div class="row">
-                        <div class="col-3 col-6-medium col-12-small">
-                            <!-- API Documentation -->
-                            <section class="widget links">
-                                <h3>API Documentation</h3>
-                                <ul class="style2">
-                                    <li><a href="#">Quick Start Guide</a></li>
-                                    <li><a href="#">Authentication</a></li>
-                                    <li><a href="#">Parse Resume Endpoint</a></li>
-                                    <li><a href="#">Error Codes</a></li>
-                                    <li><a href="#">Full API Reference</a></li>
-                                </ul>
-                            </section>
-                        </div>
-                        <div class="col-3 col-6-medium col-12-small">
-                            <!-- Integrations -->
-                            <section class="widget links">
-                                <h3>Integrations</h3>
-                                <ul class="style2">
-                                    <li><a href="#">Angular</a></li>
-                                    <li><a href="#">React</a></li>
-                                    <li><a href="#">Vue.js</a></li>
-                                    <li><a href="#">Next.js</a></li>
-                                    <li><a href="#">More coming soon</a></li>
-                                </ul>
-                            </section>
-                        </div>
-                        <div class="col-3 col-6-medium col-12-small">
-                            <!-- Random Stuff / Other Projects -->
-                            <section class="widget links">
-                                <h3>Other Projects</h3>
-                                <ul class="style2">
-                                    <li><a href="#">Invoice Generator</a></li>
-                                    <li><a href="#">PDF Merger API</a></li>
-                                    <li><a href="#">Image Optimizer</a></li>
-                                    <li><a href="#">Email Validator</a></li>
-                                    <li><a href="#">Currency Converter</a></li>
-                                </ul>
-                            </section>
-                        </div>
-                        <div class="col-3 col-6-medium col-12-small">
-                            <!-- Contact -->
-                            <section class="widget contact last">
-                                <h3>Contact</h3>
-                                <ul>
-                                    <li>
-                                        <a href="https://github.com/daniel117622" class="icon brands fa-github" target="_blank">
-                                            <span class="label">GitHub</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="https://www.linkedin.com/in/daniel-de-la-cruz-b489642aa/" class="icon brands fa-linkedin" target="_blank">
-                                            <span class="label">LinkedIn</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="mailto:dan5jul@hotmail.com" class="icon solid fa-envelope">
-                                            <span class="label">Email</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                                <p>
-                                    644 100 9945<br />
-                                    Guadalajara, Jal<br />
-                                    <a href="mailto:dan5jul@hotmail.com">dan5jul@hotmail.com</a>
-                                </p>
-                            </section>
-                        </div>
-
-                    </div>
-                </footer>
-            </div>
-
-			</div>
-
-		<!-- Scripts -->
-
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.dropotron.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-
-	</body>
+        {% include 'footer.html' %}
+    </div>
+    <!-- Scripts -->
+    <script src="{{ url_for('static', filename='assets/js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/jquery.dropotron.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/browser.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/breakpoints.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/util.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/main.js') }}"></script>
+</body>
 </html>

@@ -1,0 +1,64 @@
+<!-- base.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Verti{% endblock %}</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/main.css') }}" />
+</head>
+<body class="is-preload homepage">
+    <div id="page-wrapper">
+        {% include 'menu.html' %}
+
+
+        <div class="auth-form-wrapper" style="max-width: 400px; margin: 3rem auto;">
+            <section class="box">
+                <header>
+                    <h2>Sign in or Register</h2>
+                </header>
+                {% if auth0_available %}
+                    <p>
+                        Use your account to access Verti's features.
+                    </p>
+                    <div style="text-align: center;">
+                        <a href="{{ url_for('login') }}" class="button large icon solid fa-sign-in-alt" style="margin-bottom: 1rem;">
+                            Log In / Register with Auth0
+                        </a>
+                    </div>
+                {% else %}
+                    <p>
+                        <strong>Auth0 is not configured.</strong><br>
+                        Please use the placeholder form below.
+                    </p>
+                    <form method="post" action="#" style="margin-top: 2rem;">
+                        <div class="row gtr-50">
+                            <div class="col-12">
+                                <input type="email" name="email" placeholder="Email" required />
+                            </div>
+                            <div class="col-12">
+                                <input type="password" name="password" placeholder="Password" required />
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="button primary fit" style="border-radius: 2px;">Login (NO AUTH0)</button>
+                            </div>
+                        </div>
+                    </form>
+                {% endif %}
+            </section>
+        </div>
+
+
+        {% include 'footer.html' %}
+    </div>
+    <!-- Scripts -->
+    <script src="{{ url_for('static', filename='assets/js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/jquery.dropotron.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/browser.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/breakpoints.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/util.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/main.js') }}"></script>
+</body>
+</html>
+
+

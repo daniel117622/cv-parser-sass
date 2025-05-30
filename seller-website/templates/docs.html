@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Verti{% endblock %}</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/main.css') }}" />
+    <style>
+        /* Simple sidebar layout for docs and similar pages */
+        .layout-with-sidebar {
+            display: flex;
+            gap: 2rem;
+            margin: 2rem auto;
+            max-width: 1200px;
+        }
+        #doc-sidebar {
+            min-width: 220px;
+            max-width: 260px;
+        }
+        #doc-sidebar nav ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        #doc-sidebar nav ul li {
+            margin-bottom: 0.5em;
+        }
+        #doc-sidebar nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+        }
+        #doc-sidebar nav ul li a:hover {
+            color: #007bff;
+        }
+        main.doc-content {
+            flex: 1;
+            min-width: 0;
+        }
+    </style>
+</head>
+<body class="is-preload homepage">
+    <div id="page-wrapper">
+        {% include 'menu.html' %}
+
+        <div class="layout-with-sidebar">
+            <aside id="doc-sidebar">
+                <nav class="box">
+                    <h3>JUMP TO</h3>
+                    <ul>
+                        <li><a href="#overview">Overview</a></li>
+                        <li><a href="#install-general">General Installation</a></li>
+                        <li><a href="#install-angular">Angular</a></li>
+                        <li><a href="#install-react">React</a></li>
+                    </ul>
+                </nav>
+            </aside>
+            <main class="doc-content">
+                <section id="overview">
+                    <h2>Overview</h2>
+                    <p>Welcome to the Verti CV Parsing SaaS documentation! Here you'll find everything you need to get started integrating our service into your application.</p>
+                </section>
+                <section id="install-general">
+                    <h2>General Installation</h2>
+                    <ol>
+                        <li>Sign up for an account and obtain your API key.</li>
+                        <li>Review your usage limits and documentation access.</li>
+                        <li>Choose your preferred integration method below.</li>
+                    </ol>
+                </section>
+                <section id="install-angular">
+                    <h2>Angular</h2>
+                    <pre><code>npm install verti-cv-parser-angular</code></pre>
+                    <p>Import the module and use the provided components in your forms.</p>
+                </section>
+                <section id="install-react">
+                    <h2>React</h2>
+                    <pre><code>npm install verti-cv-parser-react</code></pre>
+                    <p>Use the <code>&lt;CVParser /&gt;</code> component in your React app.</p>
+                </section>
+            </main>
+        </div>
+
+        {% include 'footer.html' %}
+    </div>
+    <!-- Scripts -->
+    <script src="{{ url_for('static', filename='assets/js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/jquery.dropotron.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/browser.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/breakpoints.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/util.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/main.js') }}"></script>
+</body>
+</html>

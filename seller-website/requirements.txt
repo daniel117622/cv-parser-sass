@@ -6,3 +6,9 @@ Jinja2==3.1.6
 MarkupSafe==3.0.2
 Werkzeug==3.1.3
 gunicorn
+
+# Optional: For Auth0/OAuth support (safe to install even if not configured)
+authlib==1.3.0
+
+# Optional: For loading .env files
+python-dotenv==1.0.1
