@@ -1,13 +1,18 @@
 import os
+import traceback
 from flask import Flask, render_template, redirect, url_for, session
 import logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 try:
-    from authlib.integrations.flask_client import OAuth # type: ignore
-except ImportError:
-    OAuth = None  # Authlib not installed
+    from authlib.integrations.flask_client import OAuth 
+except Exception as e:
+    OAuth = None  # Authlib not installed or import failed
+    logger.warning("Error importing flask_client for OAUTH")
+    logger.warning(f"Exception: {e}")
+    logger.warning(traceback.format_exc())
+
 
 from dotenv import load_dotenv # type: ignore
 
