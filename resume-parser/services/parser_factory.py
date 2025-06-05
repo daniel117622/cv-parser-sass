@@ -1,37 +1,58 @@
+from typing import Literal, Optional, Dict, Type
 from services.pdf_parser import PDFParser
+from services.parser_interface import ParserInterface
+
+FileType = Literal['pdf', 'docx', 'xlsx', 'pptx', 'zip', 'doc', 'unknown']
 
 class ParserFactory:
-    _parsers = [PDFParser]
+    # Map file types to their corresponding parser classes
+    _parser_map: Dict[FileType, Optional[Type]] = {
+        'pdf': PDFParser,
+        'docx'   : None,
+        'xlsx'   : None,
+        'pptx'   : None,
+        'zip'    : None,
+        'doc'    : None,
+        'unknown': None
+    }
 
     @classmethod
-    def get_parser(cls, file_mime_type=None, file_extension=None):
+    def get_parser(cls, file_type: FileType) -> Optional[ParserInterface]:
         """
-        Returns an instance of the appropriate parser based on MIME type or file extension.
+        Returns an instance of the appropriate parser based on file type.
 
         Args:
-            file_mime_type (str): The MIME type of the file (e.g., 'application/pdf').
-            file_extension (str): The file extension (e.g., 'pdf', 'docx').
+            file_type (FileType): The detected file type (e.g., 'pdf', 'docx').
 
         Returns:
-            ParserInterface: An instance of the appropriate parser.
-
-        Raises:
-            ValueError: If no suitable parser is found.
+            Optional[ParserInterface]: An instance of the appropriate parser, 
+                                     or None if no parser is available.
         """
-        for parser_cls in cls._parsers:
-            supported = parser_cls.get_supported_types()
-            if file_mime_type and file_mime_type in supported:
-                return parser_cls()
-            if file_extension and file_extension.lower() in supported:
-                return parser_cls()
-        raise ValueError("No parser available for the given file type.")
+        parser_cls = cls._parser_map.get(file_type)
+        
+        if parser_cls is None:
+            return None
+        
+        return parser_cls()
 
     @classmethod
-    def register_parser(cls, parser_cls):
+    def register_parser(cls, file_type: FileType, parser_cls: Type):
         """
-        Register a new parser class.
+        Register a new parser class for a specific file type.
 
         Args:
-            parser_cls (type): The parser class to register.
+            file_type (FileType): The file type to associate with the parser.
+            parser_cls (Type): The parser class to register.
         """
-        cls._parsers.append(parser_cls)
+        cls._parser_map[file_type] = parser_cls
+
+    @classmethod
+    def get_supported_file_types(cls) -> list[FileType]:
+        """
+        Returns a list of file types that have available parsers.
+
+        Returns:
+            list[FileType]: List of supported file types.
+        """
+        return [file_type for file_type, parser_cls in cls._parser_map.items() 
+                if parser_cls is not None]

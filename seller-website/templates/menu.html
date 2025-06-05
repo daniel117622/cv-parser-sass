@@ -1,27 +1,41 @@
-<!-- menu.html -->
 <div id="header-wrapper">
     <header id="header" class="container">
         <!-- Logo -->
-        <div id="logo">
-            <h1><a href="{{ url_for('index') }}">Verti</a></h1>
+        <div id="">
+            <h1><a href="{{ url_for('index') }}">
+                <img src="images/logo.png" alt="" srcset="">
+            </a></h1>
             <span>by _Kuhaku_</span>
         </div>
         <!-- Nav -->
         <nav id="nav">
             <ul>
                 <li class="current"><a href="{{ url_for('index') }}">Products</a></li>
-                <li><a href="#">Resources</a></li>
+                <li><a href="{{ url_for('docs') }}">Resources</a></li>
                 <li><a href="#">Community</a></li>
                 <li>
-                    <a href="https://github.com/daniel117622/cv-parser-sass">Repo</a>
+                    <a href="https://github.com/daniel117622/cv-parser-sass" target="_blank">Repo</a>
                 </li>
-                <li>
-                    <a href="{{ url_for('auth') }}" class="special">Login</a>
-                </li>
-                <li>
-                    <a href="{{ url_for('auth') }}" class="special">Register</a>
-                </li>
+                {% if not user %}
+                    <li>
+                        <a href="{{ url_for('auth') }}" style="background: #007bff; color: #fff; border-radius: 2px; padding: 0.4em 1.2em; font-size: 0.95em; text-decoration: none; margin-left: 0.5em; display: inline-block;">Login</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('auth') }}" style="background: #007bff; color: #fff; border-radius: 2px; padding: 0.4em 1.2em; font-size: 0.95em; text-decoration: none; margin-left: 0.5em; display: inline-block;">Register</a>
+                    </li>
+                {% endif %}
             </ul>
         </nav>
+        {% if user %}
+            <div style="margin-top: 0.5em; text-align: right;">
+                <span style="font-size: 0.95em; color: #666; margin-right: 0.5em;">
+                    Logged in as <strong>{{ user['name'] or user['email'] }}</strong>
+                </span>
+                <a href="{{ url_for('logout') }}"
+                   style="background: #007bff; color: #fff; border-radius: 2px; padding: 0.4em 1.2em; font-size: 0.95em; text-decoration: none; margin-left: 0.5em; display: inline-block;">
+                    Logout
+                </a>
+            </div>
+        {% endif %}
     </header>
 </div>

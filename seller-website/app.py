@@ -5,6 +5,8 @@ import logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+import nltk
+
 try:
     from authlib.integrations.flask_client import OAuth 
 except Exception as e:
@@ -12,6 +14,7 @@ except Exception as e:
     logger.warning("Error importing flask_client for OAUTH")
     logger.warning(f"Exception: {e}")
     logger.warning(traceback.format_exc())
+
 
 
 from dotenv import load_dotenv # type: ignore
@@ -47,6 +50,7 @@ if AUTH0_AVAILABLE:
         client_kwargs    = {
             'scope': 'openid profile email',
         },
+        server_metadata_url=f'https://{AUTH0_DOMAIN}/.well-known/openid-configuration'
     )
 else:
     oauth = None
@@ -54,11 +58,13 @@ else:
 
 @app.route('/')
 def index():
-    return render_template('base.html')
+    user = session.get('user',None)
+    return render_template('base.html', user=user)
 
 @app.route('/docs')
 def docs():
-    return render_template('docs.html')
+    user = session.get('user',None)
+    return render_template('docs.html', user=user)
 
 @app.route('/auth')
 def auth():

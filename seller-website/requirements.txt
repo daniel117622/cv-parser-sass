@@ -10,3 +10,5 @@ gunicorn
 Authlib==1.6.0
 python-dotenv==1.0.1
 requests==2.31.0
+PyPDF2==3.0.1
+nltk==3.8.1
