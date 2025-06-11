@@ -23,3 +23,5 @@ build/
 .vscode/
 
 .env
+
+parsing-experiments/resumes/
